@@ -1,5 +1,5 @@
 .buscador {
-  align-self: center;
+    align-self: center;
     background-color: #f0f0f0;
     padding: 20px;
     border-radius: 20px;
@@ -7,9 +7,13 @@
     width: 1400px;
 }
 
+.pelicula {
+  border: 1px solid #ccc;
+  display: grid;
+}
+
 .pelicula img {
 
   height: 562px;
   width: 380px;
-}
 }

@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
 import './Buscador.css'
+import PeliculaItem from './PeliculaItem.jsx'
+
 
 function Buscador({tituloABuscar}) {
 
   const [error,setError] = useState(false)
   const [peliculas,setPeliculas] = useState([])
+  const [pelicula,setPelicula] = useState(null)
 
   useEffect(() => {
       fetch(`https://www.omdbapi.com/?s=${tituloABuscar}&apikey=cd584c9c`)
@@ -42,14 +42,10 @@ function Buscador({tituloABuscar}) {
       <div className='buscador'>
         <h2>Buscando: {tituloABuscar}</h2>
         {peliculas.Search.map((pelicula) => (
-          <div key={pelicula.imdbID} className='pelicula'>
-            <h3>{pelicula.Title}</h3>
-            <p>Año: {pelicula.Year}</p>
-            <img src={pelicula.Poster} alt={`Poster de ${pelicula.Title}`} onError={(e) => {
-              e.target.onerror = null;
-              e.target.src = '/notFound.png';
-            }} />
-          </div>
+
+
+          <PeliculaItem key={pelicula.imdbID} pelicula={pelicula} />
+          
         ))}
       </div>
       </>
