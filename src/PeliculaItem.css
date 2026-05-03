@@ -1,1 +1,40 @@
 
+.pelicula {
+  /*border: 1px solid #ccc;*/
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  margin-bottom: 10px;
+  background-color: #e4e3e3;
+  padding: 10px;
+  border-radius: 70px;
+}
+
+.pelicula p {
+  text-align: left;
+  margin: 5px;
+}
+
+
+a:link{
+  color: #3F334D;
+}
+
+a:active{
+  color: #C0C5C1;
+}
+
+
+h2 {
+  text-align: center;
+  margin-top: 0;
+  font-weight: bold;
+}
+
+.pelicula img {
+
+  height: 562px;
+  width: 380px;
+  justify-self: center;
+  grid-row: span 2;
+  border-radius: 50px;
+}

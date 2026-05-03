@@ -7,13 +7,12 @@
     width: 1400px;
 }
 
-.pelicula {
-  border: 1px solid #ccc;
-  display: grid;
+h2 {
+    text-align: center;
+    margin-bottom: 3vw;
 }
 
-.pelicula img {
-
-  height: 562px;
-  width: 380px;
+#paginacion {
+    display: flex;
+    justify-content: center;
 }

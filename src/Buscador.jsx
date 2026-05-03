@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import './Buscador.css'
 import PeliculaItem from './PeliculaItem.jsx'
+import './Buscador.css'
 
 
 function Buscador({tituloABuscar}) {
@@ -8,9 +8,11 @@ function Buscador({tituloABuscar}) {
   const [error,setError] = useState(false)
   const [peliculas,setPeliculas] = useState([])
   const [pelicula,setPelicula] = useState(null)
+  const [indicePagina,setIndicePagina] = useState(0)
 
   useEffect(() => {
-      fetch(`https://www.omdbapi.com/?s=${tituloABuscar}&apikey=cd584c9c`)
+      //fetch(`https://www.omdbapi.com/?s=${tituloABuscar}&apikey=cd584c9c`)
+      fetch(`https://www.omdbapi.com/?s=${tituloABuscar}&apikey=ba471789`)
       .then(response => response.json())
       .then(data => {
         setPeliculas(data)
@@ -47,6 +49,15 @@ function Buscador({tituloABuscar}) {
           <PeliculaItem key={pelicula.imdbID} pelicula={pelicula} />
           
         ))}
+        <div id='paginacion'>
+          <button disabled="false" onClick={
+
+            
+
+          }>&lt;</button>
+          
+          <button >&gt;</button>
+        </div>
       </div>
       </>
 

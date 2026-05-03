@@ -6,7 +6,9 @@ function App({ pelicula }) {
   const [peliculaDetails, setPeliculaDetails] = useState(null)
 
   useEffect(() => {
-    fetch(`https://www.omdbapi.com/?i=${pelicula.imdbID}&apikey=cd584c9c`)
+    //fetch(`https://www.omdbapi.com/?i=${pelicula.imdbID}&apikey=cd584c9c`)
+    fetch(`https://www.omdbapi.com/?i=${pelicula.imdbID}&apikey=ba471789`)
+
       .then(response => response.json())
       .then(data => {
         setPeliculaDetails(data)
@@ -21,22 +23,28 @@ function App({ pelicula }) {
     <>
 
     <div key={pelicula.imdbID} className='pelicula'>
-            <h3>{pelicula.Title}</h3>
-            <p>Fecha de lanzamiento: {peliculaDetails ? peliculaDetails.Released : 'Cargando...'}</p>
             <img src={pelicula.Poster} alt={`Poster de ${pelicula.Title}`} onError={(e) => {
               e.target.onerror = null;
               e.target.src = '/notFound.png';
             }} />
-            <p>Sinopsis: {peliculaDetails ? peliculaDetails.Plot : 'Cargando...'}</p>
-            <p>Director: {peliculaDetails ? peliculaDetails.Director : 'Cargando...'}</p>
-            <p>Género: {peliculaDetails ? peliculaDetails.Genre : 'Cargando...'}</p>
-            <p>Actores: {peliculaDetails ? peliculaDetails.Actors : 'Cargando...'}</p>
-            <p>Duración: {peliculaDetails ? peliculaDetails.Runtime : 'Cargando...'}</p>
-            <p>Rating: {peliculaDetails ? peliculaDetails.imdbRating : 'Cargando...'}</p>
-            <p>Votos: {peliculaDetails ? peliculaDetails.imdbVotes : 'Cargando...'}</p>
-            <p>Idioma: {peliculaDetails ? peliculaDetails.Language : 'Cargando...'}</p>
-            <p>País: {peliculaDetails ? peliculaDetails.Country : 'Cargando...'}</p>
-            <p>Premios: {peliculaDetails ? (peliculaDetails.Awards === 'N/A' ? 'No registrados' : peliculaDetails.Awards) : 'Cargando...'}</p>
+            <h2>{pelicula.Title}</h2>
+            <span>
+              <p><b>Sinopsis:</b> {peliculaDetails ? peliculaDetails.Plot : 'Cargando...'}</p>
+              <p><b>Rating:</b> {peliculaDetails ? peliculaDetails.imdbRating : 'Cargando...'}</p>
+              <p><b>Votos:</b> {peliculaDetails ? peliculaDetails.imdbVotes : 'Cargando...'}</p>
+              <p><b>Género:</b> {peliculaDetails ? peliculaDetails.Genre : 'Cargando...'}</p>
+              <p><b>Fecha de lanzamiento:</b> {peliculaDetails ? peliculaDetails.Released : 'Cargando...'}</p>
+              <p><b>Duración:</b> {peliculaDetails ? peliculaDetails.Runtime : 'Cargando...'}</p>
+              <p><b>Premios:</b> {peliculaDetails ? (peliculaDetails.Awards === 'N/A' ? 'No registrados' : peliculaDetails.Awards) : 'Cargando...'}</p>
+              <p><b>Director:</b> {peliculaDetails ? peliculaDetails.Director : 'Cargando...'}</p>
+              <p><b>Actores:</b> {peliculaDetails ? peliculaDetails.Actors : 'Cargando...'}</p>
+              <p><b>Idioma:</b> {peliculaDetails ? peliculaDetails.Language : 'Cargando...'}</p>
+              <p><b>País:</b> {peliculaDetails ? peliculaDetails.Country : 'Cargando...'}</p>
+              <p><a href={`https://www.youtube.com/results?search_query=${pelicula.Title} trailer`} target="_blank" rel="noopener noreferrer">Buscar Trailer en YouTube</a></p>
+              <p><a href={`https://www.1shows.org/search?query=${pelicula.Title}`} target="_blank" rel="noopener noreferrer">Buscar película en 1show </a></p>
+              <p><a href={`https://www.opensubtitles.com/es/es/search-all/q-${pelicula.Title}/hearing_impaired-include/machine_translated-/trusted_sources-`} target="_blank" rel="noopener noreferrer">Buscar subtítulos</a></p>
+            </span>
+            
           </div>
     </>
  
