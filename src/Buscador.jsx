@@ -8,11 +8,13 @@ function Buscador({tituloABuscar}) {
   const [error,setError] = useState(false)
   const [peliculas,setPeliculas] = useState([])
   const [pelicula,setPelicula] = useState(null)
-  const [indicePagina,setIndicePagina] = useState(0)
+  const [cargando,setCargando] = useState(true)
+  const [indicePagina,setIndicePagina] = useState(1)
 
   useEffect(() => {
-      //fetch(`https://www.omdbapi.com/?s=${tituloABuscar}&apikey=cd584c9c`)
-      fetch(`https://www.omdbapi.com/?s=${tituloABuscar}&apikey=ba471789`)
+      setCargando(true)
+      fetch(`https://www.omdbapi.com/?s=${tituloABuscar}&apikey=cd584c9c&page=${indicePagina}`)
+      //fetch(`https://www.omdbapi.com/?s=${tituloABuscar}&apikey=ba471789&page=${indicePagina}`)
       .then(response => response.json())
       .then(data => {
         setPeliculas(data)
@@ -21,7 +23,21 @@ function Buscador({tituloABuscar}) {
         console.error(error)
         setError(true)
      });
+     setCargando(false)
+     window.scrollTo({ top: 0, behavior: 'smooth' }); // Para que suba al inicio de pagina, 'smooth' para animación, o 'auto' para instantáneo
+    }, [tituloABuscar,indicePagina])
+    
+    useEffect(() => {
+      setIndicePagina(1)
     }, [tituloABuscar])
+
+    if(cargando)
+      return(
+        <div className='cargandoBusqueda'>
+          <h2>Buscando: {tituloABuscar}</h2>
+          <p>Cargando resultados...</p>    
+        </div>
+      )
 
     if(error)
       return(
@@ -50,18 +66,15 @@ function Buscador({tituloABuscar}) {
           
         ))}
         <div id='paginacion'>
-          <button disabled="false" onClick={
-
-            
-
-          }>&lt;</button>
-          
-          <button >&gt;</button>
+          <button id="botonAnterior" disabled={indicePagina === 1} onClick={() => setIndicePagina(indicePagina - 1)}>&lt;</button>
+          <strong>.. {indicePagina} ..</strong>
+          <button id="botonSiguiente" disabled={peliculas.Search.length < 10} onClick={() => setIndicePagina(indicePagina + 1)}>&gt;</button>
         </div>
       </div>
       </>
 
     )
+    //El disabled={indicePagina === 1} se debe poner la comprobacion ahiporque si se hace afuera React no se da cuenta del cambio, o, si se hace afuera imagino que seria mas engorroso
   }
 
 

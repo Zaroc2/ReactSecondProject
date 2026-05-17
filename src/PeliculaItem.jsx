@@ -6,8 +6,8 @@ function App({ pelicula }) {
   const [peliculaDetails, setPeliculaDetails] = useState(null)
 
   useEffect(() => {
-    //fetch(`https://www.omdbapi.com/?i=${pelicula.imdbID}&apikey=cd584c9c`)
-    fetch(`https://www.omdbapi.com/?i=${pelicula.imdbID}&apikey=ba471789`)
+    fetch(`https://www.omdbapi.com/?i=${pelicula.imdbID}&apikey=cd584c9c`)
+    //fetch(`https://www.omdbapi.com/?i=${pelicula.imdbID}&apikey=ba471789`)
 
       .then(response => response.json())
       .then(data => {
